@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller // ctrl+shift+os
 public class RegisterController {
 	
-	@RequestMapping("/regsiter/add")
+	@RequestMapping("/register/add")
 	public String register() {
-		
-		return "registerForm"; //WEB-INF//
-		
-		
+		return "registerFrom"; //WEB-INF//
 	}
 	
+	@RequestMapping("/register/save")
+	public String save() {
+		return "registerinfo";
+	}
 	
 	
 	
