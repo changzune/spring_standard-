@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,10 @@ public class YoilTellerMVC6 {
 	}
 	
 	
-    @RequestMapping("/getYoilMVC5") // http://localhost/ch2/getYoilMVC5
+    @RequestMapping("/getYoilMVC6") // http://localhost/ch2/getYoilMVC5
     //public String main(@ModelAttribute("myDate") MyDate date, Model model) { // 아래와 동일
-    	public String main(@ModelAttribute MyDate date, Model model) {
+    	public String main(@ModelAttribute MyDate date, BindingResult result) {
+    	System.out.println("result=" + result);
     	
  
         // 1. 유효성 검사
