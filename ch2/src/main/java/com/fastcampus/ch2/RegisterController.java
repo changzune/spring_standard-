@@ -11,7 +11,7 @@ public class RegisterController {
 		return "registerFrom"; //WEB-INF//
 	}
 	
-	@RequestMapping("/register/save")
+	@RequestMapping(value = "/register/save", method=RequestMethod.P)
 	public String save() {
 		return "registerinfo";
 	}

@@ -68,7 +68,7 @@
     <title>Register</title>
 </head>
 <body>
-   <form action ="<c:url value="register/save"/>" method="post" onsubmit = 'return formCheck(this)'">
+   <form action ="<c:url value="/register/save"/>" method="post" onsubmit = 'return formCheck(this)'">
     <div class="title">Register</div>
     <div id="msg" class="msg"> </div> 
     <label for="">아이디</label>
