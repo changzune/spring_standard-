@@ -1,5 +1,7 @@
 package com.fastcampus.ch2;
 
+import java.net.URLEncoder;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +16,14 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(String id, String pwd){
+	public String login(String id, String pwd, String rememberId){
 		// 1.id와 pwd를 확인
+		if(!loginCheck(id,pwd)) {
+			String msg = URLEncoder.encode("id 또는 pwd가 일치 하지 않습니다.", "utf-8");
+			
+			return "redirect:/login/login?msg"+msg;
+		}
+		
 		// 2.id와 pwd가 일치하면, 홈으로 이동
 		// 일치 하지 않으며, loginForm으로 이동
 		return "loginForm";
