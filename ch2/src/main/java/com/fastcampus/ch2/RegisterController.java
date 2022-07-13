@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller // ctrl+shift+os
 public class RegisterController {
 	
-	// @RequestMapping(value = "/register/save", method={RequestMethod.GET, RequestMethode.POST)
-	//@RequestMapping("/register/add") // 신규회원 가입 화면
-	
-//	@GetMapping("/register/add")
-//	public String register() {
-//		return "registerFrom"; //WEB-INF//
-//	}
+	@RequestMapping(value = "/register/add", method={RequestMethod.GET, RequestMethod.POST})
+	public String register() {
+		return "registerFrom"; //WEB-INF//views/registerForm.jsp
+	}
 	
 	//@RequestMapping(value = "/register/save", method=RequestMethod.POST)
 	@PostMapping("/register/save") // 4.3부터
@@ -28,7 +25,7 @@ public class RegisterController {
 			String msg = URLEncoder.encode("id를 잘못 입력하셨습니다.", "utf-8");
 			
 			m.addAttribute("msg", msg);
-			return "redirect:/register/add"; //url재작성(rewriting)
+			return "forward:/register/add"; //url재작성(rewriting)
 			//return "redirect:/register/add?msg"+msg; //url재작성(rewriting)
 			
 		}
@@ -38,7 +35,7 @@ public class RegisterController {
 	}
 
 	private boolean isValid(User user) {
-		return true;
+		return false;
 	}
 	
 	
