@@ -4,7 +4,10 @@ import java.net.URLEncoder;
 import java.net.http.HttpResponse;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +22,20 @@ public class LoginController {
 		return "loginForm";
 	}
 	
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		//1. 세션을 종료
+		session.invalidate();
+		//2. 홈으로 이동
+		return "redirect:/";
+		
+	}
+	
 	@PostMapping("/login")
-	public String login(String id, String pwd, boolean rememberId, HttpServletResponse response) throws Exception {
-		System.out.println("id="+id);
-		System.out.println("pwd="+pwd);
-		System.out.println("rememberId="+rememberId);
+	public String login(String id, String pwd, boolean rememberId,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 
 		
 		
@@ -33,8 +45,18 @@ public class LoginController {
 			String msg = URLEncoder.encode("id 또는 pwd가 일치 하지 않습니다.", "utf-8");
 			
 			return "redirect:/login/login?msg="+msg;
-			//redirect 하면 get으로 간다.
+		
 		}
+			//redirect 하면 get으로 간다.
+			//2-2. id와 pwd가 일치하지 않으면
+			HttpSession session = request.getSession();
+			//세션 객체를 얻어오기 
+			
+			//세션객체에 id를 저장
+			session.setAttribute("id", id);
+			
+			
+		
 		
 		if(rememberId) {
 			// 1. 쿠기를 생성
