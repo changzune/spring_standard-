@@ -14,7 +14,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public String list(HttpServletRequest request) {
 		if(!loginCheck(request))
-			return "redirect:/login/login"; //로그인을 안했으면 로그인 화면으로 이동
+			return "redirect:/login/login?toURL="+request.getRequestURL(); //로그인을 안했으면 로그인 화면으로 이동
 		
 		return "boardlist";
 	}
@@ -24,7 +24,7 @@ public class BoardController {
 		// 1.세션을 얻어서
 		HttpSession session = request.getSession();
 		// 2.세션에 id가 있는지 확인, 있으면 turn를 반환
-//		if(session.getAttribute("id")!=null)
+//		if(session.getAttribute("id")!=null) //아이디가 있는 지 확인 
 //			return true;
 //		else
 //			return false;

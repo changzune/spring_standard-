@@ -33,7 +33,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(String id, String pwd, boolean rememberId,
+	public String login(String id, String pwd, String toURL, boolean rememberId,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 
@@ -77,7 +77,10 @@ public class LoginController {
 		
 		// 2-2 .id와 pwd가 일치하면, 홈으로 이동
 		// 3. 홈으로 이동
-		return "redirect:/";
+		toURL = toURL ==null || toURL.equals("")? "/" : toURL;
+		
+		
+		return "redirect:"+toURL;
 	}
 
 	private boolean loginCheck(String id, String pwd) {
